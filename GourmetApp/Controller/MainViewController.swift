@@ -9,8 +9,10 @@ class MainViewController: UIViewController{
     private let addButton  = UIButton()
     private let wantButton = UIButton()
     private let wentButton = UIButton()
+    
     // Class
     let imageModel    = ImageModel()
+    
     // UI Variant
     @IBOutlet weak var backgroundImage: UIImageView!
 
@@ -21,9 +23,9 @@ class MainViewController: UIViewController{
         navigationController?.delegate = self
         
         // UI Setting
-        self.createButton(button: addButton,  caption: "店を探す", x: view.frame.width/10, y: view.frame.height*6/40,  selector: #selector(self.add(_ :)), imageID: 0)
-        self.createButton(button: wantButton, caption: "行きたい", x: view.frame.width/10, y: view.frame.height*17/40, selector: #selector(self.want(_ :)), imageID: 1)
-        self.createButton(button: wentButton, caption: "良かった", x: view.frame.width/10, y: view.frame.height*28/40, selector: #selector(self.went(_ :)), imageID: 2)
+        self.createButton(button: addButton,  caption: "Search", x: view.frame.width/10, y: view.frame.height*6/40,  selector: #selector(self.add(_ :)), imageID: 0)
+        self.createButton(button: wantButton, caption: "Want", x: view.frame.width/10, y: view.frame.height*17/40, selector: #selector(self.want(_ :)), imageID: 1)
+        self.createButton(button: wentButton, caption: "Good", x: view.frame.width/10, y: view.frame.height*28/40, selector: #selector(self.went(_ :)), imageID: 2)
         backgroundImage.image = UIImage(named: imageModel.imageName.shuffled()[0])
     }
 

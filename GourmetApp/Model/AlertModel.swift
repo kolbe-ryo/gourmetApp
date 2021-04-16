@@ -1,9 +1,4 @@
-//
-//  AlertModel.swift
-//  GourmetApp
-//
-//  Created by Ryo Fukahori on 2021/01/16.
-//
+
 import UIKit
 import Foundation
 import FloatingPanel

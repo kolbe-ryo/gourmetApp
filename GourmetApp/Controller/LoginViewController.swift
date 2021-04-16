@@ -12,10 +12,12 @@ class LoginViewController: UIViewController {
     private let passwordTextField = UITextField()
     private let signInButton      = UIButton()
     private let logInButton       = UIButton()
+    
     // Class
     private let alertModel        = AlertModel()
     private let imageModel        = ImageModel()
     private var animationView     = AnimationView()
+    
     // UI Variant
     @IBOutlet weak var backgoundImage: UIImageView!
     

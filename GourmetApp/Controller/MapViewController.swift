@@ -13,14 +13,18 @@ class MapViewController: UIViewController {
     private var latValue        = Double()
     private var logValue        = Double()
     private var shopDataArray: [ShopData] = []
+    
     // Class
     private let alertModel      = AlertModel()
     private var animationView   = AnimationView()
+    
     // UI Variant
     @IBOutlet weak var mapView: MKMapView!
+    
     // Floating Panel
     private var floatingPanelController: FloatingPanelController!
     private var semiModalViewController: SemiModalViewController!
+    
     // Location Manager
     private let locationManager = CLLocationManager()
     
@@ -71,7 +75,7 @@ class MapViewController: UIViewController {
         textField.textAlignment  = .left
         textField.placeholder    = hintText
         textField.delegate       = self
-        textField.addBorderBottom(height: 1.0, color: .darkGray)
+        textField.addBorderBottom(height: 1.0, color: .lightGray)
         view.addSubview(textField)
     }
     
@@ -135,7 +139,7 @@ class MapViewController: UIViewController {
                 if let prefecture: String?            = placemark.placemark.administrativeArea {shopData.prefecture = prefecture}
                 
                 shopData.address = ""
-                if let prefecture: String? = placemark.placemark.administrativeArea, let locality = placemark.placemark.locality, let thoroughfare = placemark.placemark.thoroughfare {
+                if let prefecture = placemark.placemark.administrativeArea, let locality = placemark.placemark.locality, let thoroughfare = placemark.placemark.thoroughfare {
                     shopData.address = "\(prefecture) \(locality) \(thoroughfare)"
                 }
                 self.shopDataArray.append(shopData)                        // Add all searched shop data
@@ -187,7 +191,7 @@ extension MapViewController: MKMapViewDelegate {
             self.setSemiModalVC(id: annotationID!)
             self.setFloatingPanel(state: .half)
             // Present shop information
-            self.semiModalViewController.setShopInformtion(shopData: shopDataArray[annotationID!])
+            self.semiModalViewController.shopData = shopDataArray[annotationID!]
             self.focusSelectedItem(mapView: self.mapView, annotationNumber: annotationID!)
         } catch let error as NSError {
             print(error.debugDescription)
@@ -223,18 +227,10 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func apperanceFloatingPanel() {
-        let appearance             = SurfaceAppearance()
-        appearance.cornerRadius    = 15.0
-        appearance.backgroundColor = .clear
-//        let shadow                 = SurfaceAppearance.Shadow()
-//        shadow.color               = UIColor.black
-//        shadow.offset              = CGSize(width: 0, height: 16)
-//        shadow.radius              = 16
-//        shadow.spread              = 8
-//        appearance.shadows         = [shadow]
-
+        let appearance                                 = SurfaceAppearance()
+        appearance.cornerRadius                        = 15.0
+        appearance.backgroundColor                     = .clear
         floatingPanelController.surfaceView.appearance = appearance
-//        floatingPanelController.backdropView.backgroundColor = .clear
     }
 }
 
