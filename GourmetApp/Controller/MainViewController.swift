@@ -20,7 +20,7 @@ class MainViewController: UIViewController{
     // MARK:- View Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.delegate = self
+        self.navigationController?.delegate = self
         
         // UI Setting
         self.createButton(button: addButton,  caption: "Search", x: view.frame.width/10, y: view.frame.height*6/40,  selector: #selector(self.add(_ :)), imageID: 0)

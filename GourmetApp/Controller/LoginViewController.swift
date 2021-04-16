@@ -25,6 +25,9 @@ class LoginViewController: UIViewController {
     // MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.tintColor    = .white
+        self.navigationController?.navigationBar.barTintColor = .darkGray
         self.startAnimating()
         
         // UI Setting

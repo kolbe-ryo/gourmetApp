@@ -1,9 +1,3 @@
-//
-//  SortingViewController.swift
-//  GourmetApp
-//
-//  Created by Ryo Fukahori on 2021/02/27.
-//
 
 import UIKit
 import Lottie
