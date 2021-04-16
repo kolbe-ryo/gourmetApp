@@ -8,15 +8,15 @@
 import Foundation
 
 struct ShopData {
-    var latitude: Double?
-    var longitude: Double?
-    var url: String?
-    var name: String?
-    var tel: String?
-    var prefecture: String?
-    var address: String?
-    var shopImageURL: String?
-    var shopCategory: String?
-    var foodCategory: String?
-    var documentID : String?
+    var latitude     : Double?
+    var longitude    : Double?
+    var url          : String?
+    var name         : String?
+    var tel          : String?
+    var prefecture   : String?
+    var address      : String?
+    var shopImageURL : String?
+    var shopCategory : String?
+    var foodCategory : String?
+    var documentID   : String?
 }

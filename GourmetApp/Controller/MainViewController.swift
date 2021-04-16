@@ -61,6 +61,8 @@ class MainViewController: UIViewController{
 
 }
 
+// MARK:- Extension
+
 // Logout if back view
 extension MainViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {

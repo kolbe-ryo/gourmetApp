@@ -13,7 +13,9 @@ import SafariServices
 
 class SemiModalViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, FloatingPanelControllerDelegate, AlertDelegate, UINavigationControllerDelegate {
     
-    // MARK:- Initial Settings
+    // MARK:- Variant
+    
+    
     var mapView = MKMapView()
     var floatingPanelController: FloatingPanelController!
     
@@ -29,6 +31,7 @@ class SemiModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var imageTitle: UILabel!
     @IBOutlet weak var imageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    
     
     // MARK:- Lifecycle
     override func viewDidLoad() {
