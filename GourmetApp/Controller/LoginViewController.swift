@@ -6,19 +6,18 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    
-    // MARK:- UI Variant
+    // MARK:- Variant
     private let titleLabel        = UILabel()
     private let emailTextField    = UITextField()
     private let passwordTextField = UITextField()
     private let signInButton      = UIButton()
     private let logInButton       = UIButton()
-    @IBOutlet weak var backgoundImage: UIImageView!
-    
     // Class
-    let alertModel    = AlertModel()
-    let imageModel    = ImageModel()
-    var animationView = AnimationView()
+    private let alertModel        = AlertModel()
+    private let imageModel        = ImageModel()
+    private var animationView     = AnimationView()
+    // UI Variant
+    @IBOutlet weak var backgoundImage: UIImageView!
     
     
     // MARK:- LifeCycle
@@ -54,21 +53,26 @@ class LoginViewController: UIViewController {
     
     // Mail Authentication Check
     func checkAuthenticateMail() {
+        // No authenticated user
         if Auth.auth().currentUser == nil {
             self.animationView.removeFromSuperview()
             return
         }
+        
+        // Fill user information
         emailTextField.text    = UserDefaults.standard.object(forKey: "email")    as! String
         passwordTextField.text = UserDefaults.standard.object(forKey: "password") as! String
         
-        // 認証状態の更新
+        // Update user authentication
         Auth.auth().currentUser?.reload(completion: {(error) in
             if error != nil {return}
-            // メール認証が完了しているか確認
+            
             if Auth.auth().currentUser?.isEmailVerified == true {
                 self.transition()
-            // メール認証が未完了
-            } else if Auth.auth().currentUser?.isEmailVerified == false {
+                return
+            }
+            
+            if Auth.auth().currentUser?.isEmailVerified == false {
                 let alert = self.alertModel.noResultsAlert(title: "確認事項", message: "メールを確認し、承認を完了後に\nアプリを再起動して下さい。")
                 self.present(alert, animated: true, completion: nil)
                 self.animationView.removeFromSuperview()
@@ -116,18 +120,21 @@ class LoginViewController: UIViewController {
     // MARK:- UI actions
     
     @objc func signIn(_ sender: UIButton) {
+        if self.textFieldValidationBlank() {return}
         self.startAnimating()
-        // メール認証を行う
+        
+        // Mail authentication
         if let email = emailTextField.text, let password = passwordTextField.text {
             UserDefaults.standard.setValue(self.emailTextField.text, forKey: "email")
             UserDefaults.standard.setValue(self.passwordTextField.text, forKey: "password")
-            // メールによるユーザー作成
+            
+            // Create user
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                 if error != nil {
                     self.logInError(error: error as! NSError)
                     return
                 }
-                // 認証用メールを送信
+                // Send mail for authentication
                 result!.user.sendEmailVerification(completion: { (error) in
                     let alert = self.alertModel.noResultsAlert(title: "仮登録", message: "認証メールを送信しました。\n確認し認証を進めて下さい。")
                     self.present(alert, animated: true, completion: nil)
@@ -139,15 +146,18 @@ class LoginViewController: UIViewController {
     
     
     @objc func logIn(_ sender: UIButton) {
+        if self.textFieldValidationBlank() {return}
         self.startAnimating()
-        // メール認証が終了していない場合、何もしない
+        
+        // Do nothing if no authentication
         if Auth.auth().currentUser?.isEmailVerified == false {
             let alert = self.alertModel.noResultsAlert(title: "ログイン", message: "認証メールを送信しました。\n確認し認証を進めて下さい。")
             self.present(alert, animated: true, completion: nil)
             self.animationView.removeFromSuperview()
             return
         }
-        // ログイン処理
+        
+        // Login
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil {
@@ -165,6 +175,17 @@ class LoginViewController: UIViewController {
         let mainVC = self.storyboard?.instantiateViewController(identifier: "mainVC") as! MainViewController
         self.navigationController?.pushViewController(mainVC, animated: true)
         self.animationView.removeFromSuperview()
+    }
+    
+    
+    // textfield validation
+    func textFieldValidationBlank() -> Bool {
+        if emailTextField.text == "" || passwordTextField.text == "" {
+            let alert = self.alertModel.noResultsAlert(title: "エラー", message: "メールまたはパスワードが入力されていません。")
+            self.present(alert, animated: true, completion: nil)
+            return true
+        }
+        return false
     }
 
     
@@ -193,6 +214,7 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+        self.animationView.removeFromSuperview()
     }
 }
 
@@ -203,6 +225,10 @@ extension LoginViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }
 

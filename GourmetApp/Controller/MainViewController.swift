@@ -1,79 +1,76 @@
-//
-//  MainViewController.swift
-//  GourmetApp
-//
-//  Created by Ryo Fukahori on 2021/01/17.
-//
 
 import UIKit
 import Firebase
 import FirebaseAuth
 
-
-class MainViewController: UIViewController {
+class MainViewController: UIViewController{
+    
     // MARK:- Variant
-    @IBOutlet weak var backImage: UIImageView!
-    
-    
-    // Image
-    let backimageName: Array = ["1", "2", "3", "4", "5"]
-    let buttonImageName: Array = ["6", "7", "8", "9", "10", "11", "12", "13"]
+    private let addButton  = UIButton()
+    private let wantButton = UIButton()
+    private let wentButton = UIButton()
+    // Class
+    let imageModel    = ImageModel()
+    // UI Variant
+    @IBOutlet weak var backgroundImage: UIImageView!
 
+    
     // MARK:- View Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLayout()
+        navigationController?.delegate = self
+        
+        // UI Setting
+        self.createButton(button: addButton,  caption: "店を探す", x: view.frame.width/10, y: view.frame.height*6/40,  selector: #selector(self.add(_ :)), imageID: 0)
+        self.createButton(button: wantButton, caption: "行きたい", x: view.frame.width/10, y: view.frame.height*17/40, selector: #selector(self.want(_ :)), imageID: 1)
+        self.createButton(button: wentButton, caption: "良かった", x: view.frame.width/10, y: view.frame.height*28/40, selector: #selector(self.went(_ :)), imageID: 2)
+        backgroundImage.image = UIImage(named: imageModel.imageName.shuffled()[0])
     }
-    
-    // MARK:- General functions
-    // 画面レイアウトの設定
-    func setLayout() {
-        self.navigationController?.isNavigationBarHidden = false
-        // 背景画像
-        backImage.image = UIImage(named: backimageName.randomElement()!)
-        // ボタン生成
-        let positionX = view.frame.width/9
-        let positionY = view.frame.height/20
-        let shuffleImage = buttonImageName.shuffled()
-        self.generateButton(shuffleImage: shuffleImage[0], caption: "Add", positionX: positionX, positionY: positionY*2.5, width: positionX*7, height: positionY*5, arrayNumber: 0, selector: #selector(self.add(_ :)))
-        self.generateButton(shuffleImage: shuffleImage[1], caption: "Want", positionX: positionX, positionY: positionY*8.5, width: positionX*7, height: positionY*5, arrayNumber: 1, selector: #selector(self.want(_ :)))
-        self.generateButton(shuffleImage: shuffleImage[2], caption: "Went", positionX: positionX, positionY: positionY*14.5, width: positionX*7, height: positionY*5, arrayNumber: 2, selector: #selector(self.went(_ :)))
-    }
+
     
     // MARK:- UI Generator
-    // ボタン生成用
-    func generateButton(shuffleImage: String, caption: String, positionX: CGFloat, positionY: CGFloat, width: CGFloat, height: CGFloat, arrayNumber: Int, selector: Selector) {
-        // ボタンの生成
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: positionX, y: positionY, width: width, height: height)
+
+    // Button
+    func createButton(button: UIButton, caption: String, x: CGFloat, y: CGFloat, selector: Selector, imageID: Int) {
+        button.frame              = CGRect(x: x, y: y, width: view.frame.width*8/10, height: view.frame.height*5/20)
+        button.titleLabel?.font   = UIFont(name: "AvenirNext-Heavy",size: CGFloat(50))
         button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.setBackgroundImage(UIImage(named: shuffleImage), for: .normal)
+        button.clipsToBounds      = true
+        button.setBackgroundImage(UIImage(named: imageModel.imageName.shuffled()[imageID]), for: .normal)
         button.setTitle(caption, for: .normal)
-        button.titleLabel?.font = UIFont(name: "AvenirNext-Heavy",size: CGFloat(50))
         view.addSubview(button)
         button.addTarget(self,action: selector, for: .touchUpInside)
     }
     
-    // MARK:- 各ボタンのアクション設定
-    // 追加
     @objc func add(_ sender: UIButton) {
         let mapVC = storyboard?.instantiateViewController(withIdentifier: "mapVC") as! MapViewController
         self.navigationController?.pushViewController(mapVC, animated: true)
     }
     
-    // 行きたい
     @objc func want(_ sender: UIButton) {
         let sortVC = storyboard?.instantiateViewController(withIdentifier: "sortVC") as! SortingViewController
         sortVC.category = "Want"
         self.navigationController?.pushViewController(sortVC, animated: true)
     }
     
-    // 良かった
     @objc func went(_ sender: UIButton) {
         let sortVC = storyboard?.instantiateViewController(withIdentifier: "sortVC") as! SortingViewController
         sortVC.category = "Went"
         self.navigationController?.pushViewController(sortVC, animated: true)
     }
 
+}
+
+// Logout if back view
+extension MainViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController is LoginViewController {
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+                return
+            }
+        }
+    }
 }

@@ -10,48 +10,98 @@ import MapKit
 import Lottie
 import FloatingPanel
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate, FloatingPanelControllerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, FloatingPanelControllerDelegate {
+    
     // MARK:- Variant
-    @IBOutlet weak var searchTextField: UITextField!
+    private let searchTextField = UITextField()
+    private let searchButton    = UIButton()
+    private let locationButton  = UIButton()
+    private var latValue        = Double()
+    private var logValue        = Double()
+    // Class
+    private let alertModel      = AlertModel()
+    private var animationView   = AnimationView()
+    // UI Variant
     @IBOutlet weak var mapView: MKMapView!
-    
     // API Variant
-    var shopDataArray: [ShopData] = []
+    private var shopDataArray: [ShopData] = []
+    // Floating Panel
+    private var floatingPanelController: FloatingPanelController!
+    private var semiModalViewController: SemiModalViewController!
+    // Location Manager
+    private let locationManager = CLLocationManager()
     
-    var searchText = String()
-    let alertModel = AlertModel()
-    var floatingPanelController: FloatingPanelController!
-    var semiModalViewController: SemiModalViewController!
     
+    // MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = false
-        searchTextField.delegate = self
-        floatingPanelController = FloatingPanelController()
+        floatingPanelController          = FloatingPanelController()
         floatingPanelController.delegate = self
         configureSubViews()
+        
+        // UI Setting
+        self.createTextField(textField: searchTextField, hintText: "keyword", x: view.frame.width/10, y: view.frame.height*3/20)
+        self.createButton(button: searchButton, name: "magnifyingglass", x: view.frame.width*17/20, y: view.frame.height*3/20, width: 35.0, height: 35.0, selector: #selector(self.search(_ :)))
+        self.createButton(button: locationButton, name: "location", x: view.frame.width*16/20, y: view.frame.height*18/20, width: 50.0, height: 50.0, selector: #selector(self.myLocation(_ :)))
     }
+    
+    func startAnimating() {
+        animationView.frame          = CGRect(x: 0, y: 0, width: view.frame.size.width/3, height: view.frame.size.width/3)
+        animationView.center         = CGPoint(x: Int(view.frame.width)/2, y: Int(view.frame.height)/2)
+        animationView.animation      = Animation.named("mapLoading")
+        animationView.contentMode    = .scaleAspectFit
+        animationView.animationSpeed = 1.0
+        animationView.loopMode       = .loop
+        animationView.play()
+        view.addSubview(animationView)
+    }
+    
+    
+    //MARK:- UI Generator
+    
+    // TextField
+    func createTextField(textField: UITextField, hintText: String, x: CGFloat, y: CGFloat) {
+        textField.frame          = CGRect(x: x, y: y, width: view.frame.width*7/10, height: 20)
+        textField.font           = UIFont(name: "AvenirNext-Heavy",size: CGFloat(15))
+        textField.textColor      = .darkGray
+        textField.textAlignment  = .left
+        textField.placeholder    = hintText
+        textField.delegate       = self
+        textField.addBorderBottom(height: 1.0, color: .darkGray)
+        view.addSubview(textField)
+    }
+    
+    // Button
+    func createButton(button: UIButton, name: String, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, selector: Selector) {
+        button.frame                      = CGRect(x: x, y: y, width: width, height: height)
+        button.tintColor                  = .cyan
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment   = .fill
+        button.setImage(UIImage(systemName: name), for: .normal)
+        view.addSubview(button)
+        button.addTarget(self, action: selector, for: .touchUpInside)
+    }
+    
     
     // MARK:- UI Action
     
     // 入力情報検索&API起動
-    @IBAction func search(_ sender: Any) {
-        if searchTextField.text != "" {
-            if floatingPanelController != nil {floatingPanelController.removePanelFromParent(animated: true)}
-            self.startAnimating()
-            self.geoCoding(searchText: searchText)
-        }
+    @objc func search(_ sender: UIButton) {
+        guard let searchText = searchTextField.text else {return}
+        if floatingPanelController != nil {floatingPanelController.removePanelFromParent(animated: true)}
+        self.startAnimating()
+        self.geoCoding(searchText: searchText)
         searchTextField.resignFirstResponder()
     }
     
     // 現在位置に移動して表示
-    @IBAction func ownLocation(_ sender: Any) {
+    @objc func myLocation(_ sender: UIButton) {
         configureSubViews()
     }
     
     
     // MARK:- Location Manager
-    let locationManager = CLLocationManager()
+    
     
     // ローケーションの設定
     func configureSubViews() {
@@ -89,8 +139,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     // 検索位置への移動
-    var latValue = Double()
-    var logValue = Double()
+
     
     func geoCoding(searchText: String) {
         if searchTextField.text == nil {return}
@@ -223,34 +272,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         semiModalViewController.mapView = mapView
         semiModalViewController.floatingPanelController = floatingPanelController
     }
-    
-    // MARK:- Lottie
-    var animationView = AnimationView()
-    
-    // Lottieアニメーションの起動
-    func startAnimating() {
-        let sizeAnimation: Int = Int(view.frame.size.width/2)
-        animationView.frame = CGRect(x: 0, y: 0, width: sizeAnimation, height: sizeAnimation)
-        animationView.center = CGPoint(x: Int(view.frame.width)/2, y: Int(view.frame.height)/2)
-        animationView.animation = Animation.named("mapLoading")
-        animationView.contentMode = .scaleAspectFit
-        animationView.animationSpeed = 1.0
-        animationView.loopMode = .loop
-        animationView.play()
-        view.addSubview(animationView)
-    }
-    
-    // MARK:- TextField Delegate
+        
+}
+
+
+
+extension MapViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        if let text = textField.text {
-            self.searchText = text
-        }
-        return true
     }
-    
 }

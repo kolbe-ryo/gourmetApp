@@ -57,7 +57,7 @@ class AnalyticsModel {
                             if json["rest"][i]["latitude"] != "" && json["rest"][i]["longitude"] != "" && json["rest"][i]["url"] != "" && json["rest"][i]["name"] != "" && json["rest"][i]["tel"] != "" && json["rest"][i]["shop_image"] != "" {
                                 
                                 
-                                let shopData = ShopData(latitude: json["rest"][i]["latitude"].string, longitude: json["rest"][i]["longitude"].string, url: json["rest"][i]["url"].string, name: json["rest"][i]["name"].string, tel: json["rest"][i]["tel"].string, shopImage: json["rest"][i]["image_url"]["shop_image1"].string)
+                                let shopData = ShopData(latitude: json["rest"][i]["latitude"].double, longitude: json["rest"][i]["longitude"].double, url: json["rest"][i]["url"].string, name: json["rest"][i]["name"].string, tel: json["rest"][i]["tel"].string, shopImageURL: json["rest"][i]["image_url"]["shop_image1"].string)
                                 
                                 self.shopDataArray.append(shopData)
                                 
