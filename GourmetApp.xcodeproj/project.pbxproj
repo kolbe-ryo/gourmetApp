@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4DE2A74599BA958944754D3E /* Pods_GourmetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA519C39D2D257B44ABE9A7A /* Pods_GourmetApp.framework */; };
+		A517861C262B6440005943B1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517861B262B6440005943B1 /* CollectionViewCell.swift */; };
 		A5606BDA25CF772C005E28AB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5606BD925CF772C005E28AB /* MapViewController.swift */; };
 		A5606BDD25CF7B1F005E28AB /* mapLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = A5606BDC25CF7B1F005E28AB /* mapLoading.json */; };
 		A58366002628659C00A88901 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58365F92628659B00A88901 /* ImageModel.swift */; };
@@ -33,13 +34,13 @@
 		A5C2018E2627200200E78518 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = A5C2018D2627200200E78518 /* loading.json */; };
 		A5C201C326272B0E00E78518 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C201C226272B0E00E78518 /* GoogleService-Info.plist */; };
 		A5C7B920262AD95E0040A403 /* CategoriesShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C7B91E262AD95E0040A403 /* CategoriesShopViewController.swift */; };
-		A5C7B927262ADA9E0040A403 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C7B925262ADA9E0040A403 /* CollectionViewCell.swift */; };
 		A5D23B2925B44AC600122E9B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23B2825B44AC600122E9B /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A12EC6E398A536AF1EED7EF /* Pods-GourmetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GourmetApp.debug.xcconfig"; path = "Target Support Files/Pods-GourmetApp/Pods-GourmetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		765B61B53D9E305022D410E6 /* Pods-GourmetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GourmetApp.release.xcconfig"; path = "Target Support Files/Pods-GourmetApp/Pods-GourmetApp.release.xcconfig"; sourceTree = "<group>"; };
+		A517861B262B6440005943B1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		A5606BD925CF772C005E28AB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A5606BDC25CF7B1F005E28AB /* mapLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mapLoading.json; sourceTree = "<group>"; };
 		A58365F92628659B00A88901 /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageModel.swift; path = Model/ImageModel.swift; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		A5C2018D2627200200E78518 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = "../../../../My Mac (takanoMBP)/Downloads/loading.json"; sourceTree = "<group>"; };
 		A5C201C226272B0E00E78518 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../.Trash/GourmetApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5C7B91E262AD95E0040A403 /* CategoriesShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesShopViewController.swift; sourceTree = "<group>"; };
-		A5C7B925262ADA9E0040A403 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		A5D23B2825B44AC600122E9B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EA519C39D2D257B44ABE9A7A /* Pods_GourmetApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GourmetApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -160,12 +160,12 @@
 		A59A18E325B2833600E864B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A517861B262B6440005943B1 /* CollectionViewCell.swift */,
 				A59A18D025B2830C00E864B4 /* Main.storyboard */,
 				A59A18D325B2830D00E864B4 /* Assets.xcassets */,
 				A5C2018D2627200200E78518 /* loading.json */,
 				A5606BDC25CF7B1F005E28AB /* mapLoading.json */,
 				A59EC48F2611BEFF0073282E /* loadingForSorting.json */,
-				A5C7B925262ADA9E0040A403 /* CollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 				A5D23B2925B44AC600122E9B /* MainViewController.swift in Sources */,
 				A58366012628659C00A88901 /* CategoryDataSource.swift in Sources */,
 				A58D144925D77692008AAE63 /* CustomFloatingPanelController.swift in Sources */,
-				A5C7B927262ADA9E0040A403 /* CollectionViewCell.swift in Sources */,
+				A517861C262B6440005943B1 /* CollectionViewCell.swift in Sources */,
 				A59A18CB25B2830C00E864B4 /* AppDelegate.swift in Sources */,
 				A58D144C25D77770008AAE63 /* SemiModalViewController.swift in Sources */,
 				A598B27425EA2E130074E727 /* AllShopViewController.swift in Sources */,
