@@ -11,7 +11,7 @@ class MainViewController: UIViewController{
     private let wentButton = UIButton()
     
     // Class
-    let imageModel    = ImageModel()
+    let imageModel = ImageModel()
     
     // UI Variant
     @IBOutlet weak var backgroundImage: UIImageView!

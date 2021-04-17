@@ -14,6 +14,7 @@ class AllShopViewController: UIViewController, UICollectionViewDelegate, UIColle
     var category                 = String()
     var shopDataSets: [ShopData] = []
     let imageName                = ImageModel().imageName
+    
     let loadDBModel              = LoadDBModel()
 
     @IBOutlet weak var backImage     : UIImageView!

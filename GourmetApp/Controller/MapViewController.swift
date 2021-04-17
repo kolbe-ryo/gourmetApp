@@ -131,12 +131,12 @@ class MapViewController: UIViewController {
                 if error != nil {return}
                 
                 var shopData = ShopData()
-                if let latitude:   CLLocationDegrees? = placemark.placemark.coordinate.latitude  {shopData.latitude  = latitude}
-                if let longitude:  CLLocationDegrees? = placemark.placemark.coordinate.longitude {shopData.longitude = longitude}
-                if let name:       String?            = placemark.name {shopData.name = name}
-                if let tel:        String?            = placemark.phoneNumber {shopData.tel = tel}
-                if let url:        String?            = placemark.url?.absoluteString {shopData.url = url} else {shopData.url = ""}
-                if let prefecture: String?            = placemark.placemark.administrativeArea {shopData.prefecture = prefecture}
+                if let latitude:   CLLocationDegrees? = placemark.placemark.coordinate.latitude  {shopData.latitude  = latitude} else {return}
+                if let longitude:  CLLocationDegrees? = placemark.placemark.coordinate.longitude {shopData.longitude = longitude} else {return}
+                if let name:       String             = placemark.name {shopData.name = name} else {return}
+                if let tel:        String             = placemark.phoneNumber {shopData.tel = tel}  else {shopData.tel = ""}
+                if let url:        String             = placemark.url?.absoluteString {shopData.url = url} else {shopData.url = ""}
+                if let prefecture: String             = placemark.placemark.administrativeArea {shopData.prefecture = prefecture} else {shopData.prefecture = ""}
                 
                 shopData.address = ""
                 if let prefecture = placemark.placemark.administrativeArea, let locality = placemark.placemark.locality, let thoroughfare = placemark.placemark.thoroughfare {

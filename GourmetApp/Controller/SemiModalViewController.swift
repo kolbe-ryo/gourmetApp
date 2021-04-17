@@ -41,7 +41,6 @@ class SemiModalViewController: UIViewController, FloatingPanelControllerDelegate
         alertModel.alertDelegate         = self
         
         // UI Setting
-        if self.shopInformationValidate(shopData: shopData) == false {return}
         self.createLabel(label: shopNameLabel, title: shopData.name!, x: view.frame.width*1/20, y: view.frame.height*1/20, width: view.frame.width*9/10, height: 25, font: 25, color: .white)
         self.createLabel(label: shopPlaceLabel, title: shopData.address!, x: view.frame.width*1/20, y: view.frame.height*2/20, width: view.frame.width*9/10, height: 20, font: 15, color: .white)
         self.createLabel(label: shopWebSiteLabel, title: shopData.url!, x: view.frame.width*1/20, y: view.frame.height*3/20, width: view.frame.width*9/10, height: 20, font: 15, color: .cyan)
@@ -63,13 +62,7 @@ class SemiModalViewController: UIViewController, FloatingPanelControllerDelegate
         self.setPickerLayout(x: 0, y: view.frame.height*17/40, width: UIScreen.main.bounds.size.width, height: view.frame.height*3/20)
         
     }
-    
-    func shopInformationValidate(shopData: ShopData) -> Bool {
-        if shopData.name    == nil {return false}
-        if shopData.address == nil {return false}
-        if shopData.url     == nil {self.shopData.url = "-"}
-        return true
-    }
+
     
     // MARK:- UI Generator
     

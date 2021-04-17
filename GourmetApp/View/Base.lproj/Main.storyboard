@@ -182,7 +182,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6zP-fr-XAh"/>
                     <connections>
-                        <outlet property="backImage" destination="cfx-Fh-VI2" id="xEN-bA-jvh"/>
+                        <outlet property="backgroundImage" destination="cfx-Fh-VI2" id="bNQ-Yd-c7S"/>
                         <segue destination="Okb-Q0-kaN" kind="show" id="ayL-5f-pGD"/>
                         <segue destination="4dO-oV-y7C" kind="show" id="c69-Vf-F7r"/>
                         <segue destination="Oas-2E-la7" kind="show" id="QkD-SL-6gy"/>
@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="2825" y="921"/>
         </scene>
-        <!--Category Shop View Controller-->
+        <!--Categories Shop View Controller-->
         <scene sceneID="UBV-61-pQ4">
             <objects>
-                <viewController storyboardIdentifier="categoryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4dO-oV-y7C" customClass="CategoryShopViewController" customModule="GourmetApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4dO-oV-y7C" customClass="CategoriesShopViewController" customModule="GourmetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hJh-Rj-AKW">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -287,7 +287,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KCp-MV-qRN"/>
                     <connections>
-                        <outlet property="backImage" destination="IVz-cN-e0N" id="KYN-V8-tqb"/>
+                        <outlet property="backgroundImage" destination="IVz-cN-e0N" id="Qvc-2T-fMI"/>
                         <segue destination="Oas-2E-la7" kind="show" id="iQx-Rp-dhR"/>
                     </connections>
                 </viewController>
@@ -492,7 +492,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QkD-SL-6gy"/>
+        <segue reference="iQx-Rp-dhR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="topImage" width="1536" height="1920"/>

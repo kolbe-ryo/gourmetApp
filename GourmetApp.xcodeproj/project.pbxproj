@@ -19,9 +19,8 @@
 		A58366062628659C00A88901 /* ShopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58365FF2628659C00A88901 /* ShopData.swift */; };
 		A58D144925D77692008AAE63 /* CustomFloatingPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D144825D77692008AAE63 /* CustomFloatingPanelController.swift */; };
 		A58D144C25D77770008AAE63 /* SemiModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D144B25D77770008AAE63 /* SemiModalViewController.swift */; };
-		A598B27125EA294E0074E727 /* SortingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598B27025EA294E0074E727 /* SortingViewController.swift */; };
+		A598B27125EA294E0074E727 /* SortingViewController_.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598B27025EA294E0074E727 /* SortingViewController_.swift */; };
 		A598B27425EA2E130074E727 /* AllShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598B27325EA2E130074E727 /* AllShopViewController.swift */; };
-		A598B27725EA2E220074E727 /* CategoryShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598B27625EA2E220074E727 /* CategoryShopViewController.swift */; };
 		A598B27A25EA2E2C0074E727 /* PlaceShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598B27925EA2E2C0074E727 /* PlaceShopViewController.swift */; };
 		A598B27D25EA2E670074E727 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598B27C25EA2E670074E727 /* DetailShopViewController.swift */; };
 		A59A18CB25B2830C00E864B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A18CA25B2830C00E864B4 /* AppDelegate.swift */; };
@@ -33,6 +32,8 @@
 		A59EC4902611BEFF0073282E /* loadingForSorting.json in Resources */ = {isa = PBXBuildFile; fileRef = A59EC48F2611BEFF0073282E /* loadingForSorting.json */; };
 		A5C2018E2627200200E78518 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = A5C2018D2627200200E78518 /* loading.json */; };
 		A5C201C326272B0E00E78518 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C201C226272B0E00E78518 /* GoogleService-Info.plist */; };
+		A5C7B920262AD95E0040A403 /* CategoriesShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C7B91E262AD95E0040A403 /* CategoriesShopViewController.swift */; };
+		A5C7B927262ADA9E0040A403 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C7B925262ADA9E0040A403 /* CollectionViewCell.swift */; };
 		A5D23B2925B44AC600122E9B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23B2825B44AC600122E9B /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,9 +51,8 @@
 		A58365FF2628659C00A88901 /* ShopData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopData.swift; path = Model/ShopData.swift; sourceTree = "<group>"; };
 		A58D144825D77692008AAE63 /* CustomFloatingPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFloatingPanelController.swift; sourceTree = "<group>"; };
 		A58D144B25D77770008AAE63 /* SemiModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiModalViewController.swift; sourceTree = "<group>"; };
-		A598B27025EA294E0074E727 /* SortingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingViewController.swift; sourceTree = "<group>"; };
+		A598B27025EA294E0074E727 /* SortingViewController_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingViewController_.swift; sourceTree = "<group>"; };
 		A598B27325EA2E130074E727 /* AllShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShopViewController.swift; sourceTree = "<group>"; };
-		A598B27625EA2E220074E727 /* CategoryShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryShopViewController.swift; sourceTree = "<group>"; };
 		A598B27925EA2E2C0074E727 /* PlaceShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceShopViewController.swift; sourceTree = "<group>"; };
 		A598B27C25EA2E670074E727 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
 		A59A18C725B2830C00E864B4 /* GourmetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GourmetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +66,8 @@
 		A59EC48F2611BEFF0073282E /* loadingForSorting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingForSorting.json; sourceTree = "<group>"; };
 		A5C2018D2627200200E78518 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = "../../../../My Mac (takanoMBP)/Downloads/loading.json"; sourceTree = "<group>"; };
 		A5C201C226272B0E00E78518 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../.Trash/GourmetApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5C7B91E262AD95E0040A403 /* CategoriesShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesShopViewController.swift; sourceTree = "<group>"; };
+		A5C7B925262ADA9E0040A403 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		A5D23B2825B44AC600122E9B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EA519C39D2D257B44ABE9A7A /* Pods_GourmetApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GourmetApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -132,11 +134,11 @@
 				A5606BD925CF772C005E28AB /* MapViewController.swift */,
 				A58D144825D77692008AAE63 /* CustomFloatingPanelController.swift */,
 				A58D144B25D77770008AAE63 /* SemiModalViewController.swift */,
-				A598B27025EA294E0074E727 /* SortingViewController.swift */,
+				A598B27025EA294E0074E727 /* SortingViewController_.swift */,
 				A598B27325EA2E130074E727 /* AllShopViewController.swift */,
-				A598B27625EA2E220074E727 /* CategoryShopViewController.swift */,
 				A598B27925EA2E2C0074E727 /* PlaceShopViewController.swift */,
 				A598B27C25EA2E670074E727 /* DetailShopViewController.swift */,
+				A5C7B91E262AD95E0040A403 /* CategoriesShopViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -163,6 +165,7 @@
 				A5C2018D2627200200E78518 /* loading.json */,
 				A5606BDC25CF7B1F005E28AB /* mapLoading.json */,
 				A59EC48F2611BEFF0073282E /* loadingForSorting.json */,
+				A5C7B925262ADA9E0040A403 /* CollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C7B920262AD95E0040A403 /* CategoriesShopViewController.swift in Sources */,
 				A598B27A25EA2E2C0074E727 /* PlaceShopViewController.swift in Sources */,
 				A5606BDA25CF772C005E28AB /* MapViewController.swift in Sources */,
 				A58366052628659C00A88901 /* AlertModel.swift in Sources */,
@@ -320,14 +324,14 @@
 				A5D23B2925B44AC600122E9B /* MainViewController.swift in Sources */,
 				A58366012628659C00A88901 /* CategoryDataSource.swift in Sources */,
 				A58D144925D77692008AAE63 /* CustomFloatingPanelController.swift in Sources */,
+				A5C7B927262ADA9E0040A403 /* CollectionViewCell.swift in Sources */,
 				A59A18CB25B2830C00E864B4 /* AppDelegate.swift in Sources */,
 				A58D144C25D77770008AAE63 /* SemiModalViewController.swift in Sources */,
 				A598B27425EA2E130074E727 /* AllShopViewController.swift in Sources */,
 				A59A18CD25B2830C00E864B4 /* SceneDelegate.swift in Sources */,
 				A58366042628659C00A88901 /* sendDBModel.swift in Sources */,
 				A58366062628659C00A88901 /* ShopData.swift in Sources */,
-				A598B27725EA2E220074E727 /* CategoryShopViewController.swift in Sources */,
-				A598B27125EA294E0074E727 /* SortingViewController.swift in Sources */,
+				A598B27125EA294E0074E727 /* SortingViewController_.swift in Sources */,
 				A58366002628659C00A88901 /* ImageModel.swift in Sources */,
 				A58366032628659C00A88901 /* LoadDBModel.swift in Sources */,
 			);
