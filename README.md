@@ -34,11 +34,11 @@
 
 
 ## 使用技術
-Swift      5.3.2
-Xcode      12.4
+Swift      5.3.2  
+Xcode      12.4  
 Cocoa Pods 各種ライブラリ  
-Firebase   バックエンド
-Github     ソース管理 
+Firebase   バックエンド  
+Github     ソース管理  
 
 
 ## 機能一覧
