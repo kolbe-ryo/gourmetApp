@@ -123,13 +123,9 @@ class DetailShopViewController: UIViewController, SendCompletionDelegate {
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             urlString = "comgooglemaps://?daddr=\(shopData.latitude),\(shopData.longitude)&directionsmode=walking&zoom=14"
         } else {
-//            urlString = "http://maps.apple.com/?daddr=\(shopData.latitude),\(shopData.longitude)&dirflg=w"
             urlString = "http://maps.apple.com/?ll=\(shopData.latitude!),\(shopData.longitude!)"
         }
-        
-        if let url = URL(string: urlString) {
-            UIApplication.shared.open(url)
-        }
+        if let url = URL(string: urlString) {UIApplication.shared.open(url)}
     }
     
     @objc func deleteShop(_ sender: UIButton) {

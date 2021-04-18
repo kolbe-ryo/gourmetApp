@@ -55,6 +55,7 @@ extension AllShopViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        shopData = []
         for data in loadDBModel.shopDataSets {
             if data.shopCategory != category {continue}
             if self.selectiveClass == "All" {self.shopData.append(data)}

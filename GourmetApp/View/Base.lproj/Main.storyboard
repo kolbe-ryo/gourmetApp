@@ -183,9 +183,9 @@
                     <navigationItem key="navigationItem" id="6zP-fr-XAh"/>
                     <connections>
                         <outlet property="backgroundImage" destination="cfx-Fh-VI2" id="bNQ-Yd-c7S"/>
-                        <segue destination="Okb-Q0-kaN" kind="show" id="ayL-5f-pGD"/>
                         <segue destination="4dO-oV-y7C" kind="show" id="c69-Vf-F7r"/>
                         <segue destination="Oas-2E-la7" kind="show" id="QkD-SL-6gy"/>
+                        <segue destination="3RK-5O-hzf" kind="show" id="Tg8-iG-rzH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RMH-Xp-G73" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -225,8 +225,9 @@
                             <constraint firstItem="9xY-GL-p4W" firstAttribute="top" secondItem="DUl-8d-Iuc" secondAttribute="top" id="svk-Zk-Ylz"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="szN-vp-DFs"/>
                     <connections>
-                        <outlet property="backImage" destination="BKz-je-CeK" id="pJD-Bf-4h4"/>
+                        <outlet property="backgroundImage" destination="BKz-je-CeK" id="kpV-0c-nAR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jum-q0-tah" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -430,7 +431,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iQx-Rp-dhR"/>
+        <segue reference="QkD-SL-6gy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="topImage" width="1536" height="1920"/>
