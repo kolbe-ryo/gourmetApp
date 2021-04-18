@@ -332,7 +332,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="V8q-dW-q9K"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="backImage" destination="0Ge-SD-kbZ" id="A04-hK-u3k"/>
+                        <outlet property="backgroundImage" destination="0Ge-SD-kbZ" id="z7n-wo-RG1"/>
                         <segue destination="guf-a8-1ji" kind="show" id="PgD-Aq-dk4"/>
                     </connections>
                 </viewController>
@@ -356,60 +356,6 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Rv9-cu-BE8">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="702-qt-QKn">
-                                            <rect key="frame" x="16" y="212" width="341" height="156"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="Ob5-MF-vOk" appends="YES" id="ogE-zH-J3g"/>
-                                            </connections>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3w-hQ-Rdx">
-                                            <rect key="frame" x="16" y="63" width="343" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4g-kC-dp8">
-                                            <rect key="frame" x="16" y="101" width="343" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uc6-Wr-14p">
-                                            <rect key="frame" x="16" y="170" width="261" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-6W-LIH">
-                                            <rect key="frame" x="16" y="136" width="343" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <gestureRecognizers/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                            <color key="textColor" systemColor="linkColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="1Pt-6s-aSH" appends="YES" id="RnV-YB-zZ0"/>
-                                            </connections>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo0-WS-ik9">
-                                            <rect key="frame" x="312" y="172" width="45" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete"/>
-                                            <connections>
-                                                <action selector="deleteShopFromDB:" destination="guf-a8-1ji" eventType="touchUpInside" id="bfs-KX-MNg"/>
-                                            </connections>
-                                        </button>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vdp-ec-VpB">
-                                            <rect key="frame" x="16" y="376" width="343" height="262"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </mapView>
-                                    </subviews>
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
@@ -417,38 +363,30 @@
                         <viewLayoutGuide key="safeArea" id="0sf-RZ-gUK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="IUc-LO-vv8" firstAttribute="leading" secondItem="0sf-RZ-gUK" secondAttribute="leading" id="01d-FN-Wlp"/>
                             <constraint firstItem="IUc-LO-vv8" firstAttribute="trailing" secondItem="0sf-RZ-gUK" secondAttribute="trailing" id="0Xe-8g-b9Y"/>
+                            <constraint firstItem="IUc-LO-vv8" firstAttribute="trailing" secondItem="0sf-RZ-gUK" secondAttribute="trailing" id="5Vg-yB-ERZ"/>
+                            <constraint firstItem="dEP-EP-ymt" firstAttribute="trailing" secondItem="0sf-RZ-gUK" secondAttribute="trailing" id="60W-OE-5cS"/>
                             <constraint firstItem="IUc-LO-vv8" firstAttribute="leading" secondItem="0sf-RZ-gUK" secondAttribute="leading" id="AQK-2B-1t1"/>
                             <constraint firstItem="IUc-LO-vv8" firstAttribute="top" secondItem="4Ha-Tm-DKg" secondAttribute="top" id="Cte-7o-hNR"/>
-                            <constraint firstItem="dEP-EP-ymt" firstAttribute="leading" secondItem="0sf-RZ-gUK" secondAttribute="leading" id="Gl0-Jq-XNZ"/>
+                            <constraint firstItem="dEP-EP-ymt" firstAttribute="top" secondItem="4Ha-Tm-DKg" secondAttribute="top" id="GTF-gi-6kJ"/>
                             <constraint firstAttribute="bottom" secondItem="IUc-LO-vv8" secondAttribute="bottom" id="LM9-3l-AKj"/>
-                            <constraint firstItem="dEP-EP-ymt" firstAttribute="top" secondItem="4Ha-Tm-DKg" secondAttribute="top" id="baX-lb-0tB"/>
-                            <constraint firstAttribute="bottom" secondItem="dEP-EP-ymt" secondAttribute="bottom" id="joF-7a-cJ0"/>
-                            <constraint firstItem="dEP-EP-ymt" firstAttribute="trailing" secondItem="0sf-RZ-gUK" secondAttribute="trailing" id="yaK-z2-qYa"/>
+                            <constraint firstItem="IUc-LO-vv8" firstAttribute="top" secondItem="4Ha-Tm-DKg" secondAttribute="top" id="SSF-nS-zvm"/>
+                            <constraint firstItem="IUc-LO-vv8" firstAttribute="trailing" secondItem="0sf-RZ-gUK" secondAttribute="trailing" id="UOK-PZ-5S3"/>
+                            <constraint firstAttribute="bottom" secondItem="dEP-EP-ymt" secondAttribute="bottom" id="bMQ-Lt-bNz"/>
+                            <constraint firstItem="IUc-LO-vv8" firstAttribute="top" secondItem="4Ha-Tm-DKg" secondAttribute="top" id="ivQ-zM-UQO"/>
+                            <constraint firstItem="dEP-EP-ymt" firstAttribute="leading" secondItem="0sf-RZ-gUK" secondAttribute="leading" id="j1h-If-wVA"/>
+                            <constraint firstAttribute="bottom" secondItem="IUc-LO-vv8" secondAttribute="bottom" id="mqJ-9c-6v1"/>
+                            <constraint firstAttribute="bottom" secondItem="IUc-LO-vv8" secondAttribute="bottom" id="tIu-MR-Our"/>
+                            <constraint firstItem="IUc-LO-vv8" firstAttribute="leading" secondItem="0sf-RZ-gUK" secondAttribute="leading" id="zvH-wn-XkS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HoJ-za-l0v"/>
                     <connections>
-                        <outlet property="backImage" destination="dEP-EP-ymt" id="xLS-OO-zqB"/>
-                        <outlet property="categoryLabel" destination="Uc6-Wr-14p" id="OiJ-ur-mqe"/>
-                        <outlet property="mapView" destination="Vdp-ec-VpB" id="yga-sp-XjL"/>
-                        <outlet property="placeLabel" destination="e4g-kC-dp8" id="pbk-F8-urR"/>
-                        <outlet property="shopImageView" destination="702-qt-QKn" id="VC9-3i-FmA"/>
-                        <outlet property="shopNameLabel" destination="a3w-hQ-Rdx" id="0rR-xQ-ORO"/>
-                        <outlet property="webSiteLabel" destination="Ueh-6W-LIH" id="hNL-rt-aYe"/>
+                        <outlet property="backgroundImage" destination="dEP-EP-ymt" id="w6x-lE-o0l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZU-lP-zle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="1Pt-6s-aSH">
-                    <connections>
-                        <action selector="seeWebSite:" destination="guf-a8-1ji" id="FZT-20-Lzu"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="Ob5-MF-vOk">
-                    <connections>
-                        <action selector="uploadImage:" destination="guf-a8-1ji" id="A2K-AG-vQJ"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3710.7692307692305" y="1718.9573459715639"/>
         </scene>
@@ -496,9 +434,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="topImage" width="1536" height="1920"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

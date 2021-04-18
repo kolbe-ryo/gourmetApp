@@ -27,7 +27,7 @@ class AlertModel: FloatingPanelControllerDelegate {
         }))
         
         // Wentリストへ保存
-        alert.addAction(UIAlertAction(title: "Went", style: .default, handler: { (alert) in
+        alert.addAction(UIAlertAction(title: "Good", style: .default, handler: { (alert) in
             self.alertDelegate?.addFavoriteToDB(category: alert.title!)
         }))
         

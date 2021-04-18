@@ -8,7 +8,7 @@ class MainViewController: UIViewController{
     // MARK:- Variant
     private let addButton  = UIButton()
     private let wantButton = UIButton()
-    private let wentButton = UIButton()
+    private let goodButton = UIButton()
     
     // Class
     let imageModel = ImageModel()
@@ -25,7 +25,7 @@ class MainViewController: UIViewController{
         // UI Setting
         self.createButton(button: addButton,  caption: "Search", x: view.frame.width/10, y: view.frame.height*6/40,  selector: #selector(self.add(_ :)), imageID: 0)
         self.createButton(button: wantButton, caption: "Want", x: view.frame.width/10, y: view.frame.height*17/40, selector: #selector(self.want(_ :)), imageID: 1)
-        self.createButton(button: wentButton, caption: "Good", x: view.frame.width/10, y: view.frame.height*28/40, selector: #selector(self.went(_ :)), imageID: 2)
+        self.createButton(button: goodButton, caption: "Good", x: view.frame.width/10, y: view.frame.height*28/40, selector: #selector(self.good(_ :)), imageID: 2)
         backgroundImage.image = UIImage(named: imageModel.imageName.shuffled()[0])
     }
 
@@ -51,13 +51,13 @@ class MainViewController: UIViewController{
     
     @objc func want(_ sender: UIButton) {
         let sortVC = storyboard?.instantiateViewController(withIdentifier: "sortVC") as! SortingViewController
-        sortVC.category = "Want"
+        sortVC.category = (sender.titleLabel?.text)!
         self.navigationController?.pushViewController(sortVC, animated: true)
     }
     
-    @objc func went(_ sender: UIButton) {
+    @objc func good(_ sender: UIButton) {
         let sortVC = storyboard?.instantiateViewController(withIdentifier: "sortVC") as! SortingViewController
-        sortVC.category = "Went"
+        sortVC.category = (sender.titleLabel?.text)!
         self.navigationController?.pushViewController(sortVC, animated: true)
     }
 

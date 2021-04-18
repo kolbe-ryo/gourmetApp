@@ -37,15 +37,13 @@ class CategoriesShopViewController: UIViewController, LoadCompletionDelegate {
         view.addSubview(collectionView)
     }
 
-    func loadCompletion() {
-        collectionView.reloadData()
-    }
+    func loadCompletion() {collectionView.reloadData()}
  
 }
 
+
 // MARK:- Extension
 
-// Data setting
 extension CategoriesShopViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -58,58 +56,41 @@ extension CategoriesShopViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
-        cell.layer.cornerRadius = 10
         
-        // ######################################
-        // ######################################
-        // ######################################
-        // ifでwant or went の識別
-        // ######################################
+        // Avoid for overlapped category
+        for subview in cell.contentView.subviews{subview.removeFromSuperview()}
         
-        // ロード際に更新されるのを防止
-        for subview in cell.contentView.subviews{
-            subview.removeFromSuperview()
-        }
-        
-        // 食事カテゴリの画像設定
-        let contentImage   = UIImageView()
-        let width          = cell.bounds.width*1/2
-        let height         = cell.bounds.height*1/2
-        let positionX      = (cell.bounds.width-width)/2
-        let positionY      = (cell.bounds.width-height)/2
-        contentImage.frame = CGRect(x: positionX, y: positionY, width: width, height: height)
-        contentImage.image = UIImage(named: categoryName.iconName[indexPath.row])
-        contentImage.tintColor = .white
+        // Category Image
+        let contentImage       = UIImageView()
+        let width              = cell.bounds.width*1/2
+        let height             = cell.bounds.height*1/2
+        contentImage.frame     = CGRect(x: (cell.bounds.width-width)/2, y: (cell.bounds.width-height)/2, width: width, height: height)
+        contentImage.image     = UIImage(named: categoryName.iconName[indexPath.row])
         cell.contentView.addSubview(contentImage)
         
-        // 店舗名称の設定
-        let categoryLabel =     self.setLabel(text: categoryName.dataSource[indexPath.row],
-                                              cell: cell,
-                                              positionX: 0,
-                                              positionY: cell.bounds.height*8/10,
-                                              align: .center,
-                                              fontSize: 15)
+        // Label Name
+        let categoryLabel = self.setLabel(text: categoryName.dataSource[indexPath.row], cell: cell, positionX: 0, positionY: cell.bounds.height*8/10, align: .center, fontSize: 15)
         
         cell.contentView.addSubview(categoryLabel)
-        
         return cell
     }
     
-    
     func setLabel(text: String, cell: UICollectionViewCell, positionX: CGFloat, positionY: CGFloat, align: NSTextAlignment, fontSize: Int) -> UILabel {
         let label           = UILabel()
-        label.numberOfLines = 0                                                                         // 行数設定
-        label.frame         = CGRect(x: positionX, y: positionY, width: cell.bounds.width, height: 30)  // 位置設定
-        label.textAlignment = align                                                                     // テキスト位置
-        label.font          = UIFont(name: "AvenirNext-Heavy", size: CGFloat(fontSize))                 // フォントサイズ
-        label.textColor     = .white                                                                    // フォント色
+        label.numberOfLines = 0
+        label.frame         = CGRect(x: positionX, y: positionY, width: cell.bounds.width, height: 30)
+        label.textAlignment = align
+        label.font          = UIFont(name: "AvenirNext-Heavy", size: CGFloat(fontSize))
+        label.textColor     = .white
         
-        // 取得した全てのShopデータからラベルテキストと一致するものの数をカウントする。
+        // Shops counter
         var shopCount = Int()
         for shopData in loadDBModel.shopDataSets {
+            if shopData.shopCategory != category {continue}
             if shopData.foodCategory == text {shopCount += 1}
         }
         
+        // Set text
         if text == "" {label.text = "All\(text)"}
         if text != "" {label.text = "\(text) (\(String(shopCount)))"}
         
@@ -118,38 +99,30 @@ extension CategoriesShopViewController: UICollectionViewDataSource {
     
 }
 
+
 // Action Delegate
 extension CategoriesShopViewController: UICollectionViewDelegate {
-    // ハイライト
+    // Highlight
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         collectionView.cellForItem(at: indexPath)?.backgroundColor = .white
     }
 
-    // ハイライト解除
+    // Release highlight
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
     }
 
-    // 選択アクション
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // データセットの作成
-//        selectedShopDataSets = []
-//        for shopData in shopDataSets {
-//            if shopData.foodCategory == categoryName.dataSource[indexPath.row] {selectedShopDataSets.append(shopData)}
-//        }
-
-        // 遷移
         let allVC = storyboard?.instantiateViewController(withIdentifier: "allVC") as! AllShopViewController
-//        allVC.shopDataSets = selectedShopDataSets
-        allVC.category = category
+        allVC.category       = category
+        allVC.selectiveClass = "Category"
+        allVC.foodCategory   = categoryName.dataSource[indexPath.row]
         self.navigationController?.pushViewController(allVC, animated: true)
     }
 }
 
 
-// Layout
 extension CategoriesShopViewController: UICollectionViewDelegateFlowLayout {
-    
     // CollectionCelll
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = view.bounds.width/2

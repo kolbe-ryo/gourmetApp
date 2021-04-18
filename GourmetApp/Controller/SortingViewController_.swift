@@ -45,23 +45,22 @@ class SortingViewController: UIViewController {
     
     
     // MARK:- UI Action
-    // 全てのShop表示
+
     @objc func all(_ sender: UIButton) {
-        let allVC = storyboard?.instantiateViewController(withIdentifier: "allVC") as! AllShopViewController
-        allVC.category = category
+        let allVC            = storyboard?.instantiateViewController(withIdentifier: "allVC") as! AllShopViewController
+        allVC.category       = category
+        allVC.selectiveClass = (sender.titleLabel?.text)!
         self.navigationController?.pushViewController(allVC, animated: true)
     }
     
-    // カテゴリごとのShop
     @objc func category(_ sender: UIButton) {
-        let categoryVC = storyboard?.instantiateViewController(withIdentifier: "categoryVC") as! CategoriesShopViewController
+        let categoryVC      = storyboard?.instantiateViewController(withIdentifier: "categoryVC") as! CategoriesShopViewController
         categoryVC.category = category
         self.navigationController?.pushViewController(categoryVC, animated: true)
     }
     
-    // 場所ごとのShop選択
     @objc func place(_ sender: UIButton) {
-        let placeVC = storyboard?.instantiateViewController(withIdentifier: "placeVC") as! PlaceShopViewController
+        let placeVC      = storyboard?.instantiateViewController(withIdentifier: "placeVC") as! PlaceShopViewController
         placeVC.category = category
         self.navigationController?.pushViewController(placeVC, animated: true)
     }
