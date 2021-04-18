@@ -4,7 +4,7 @@ import MapKit
 import SDWebImage
 import SafariServices
 
-class DetailShopViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SendCompletionDelegate, AlertDelegate {
+class DetailShopViewController: UIViewController, SendCompletionDelegate {
     
     // MARK:- Variant
     var shopData                 = ShopData()
@@ -41,17 +41,14 @@ class DetailShopViewController: UIViewController, UIImagePickerControllerDelegat
         self.createLabel(label: shopWebSiteLabel, title: shopData.url!, x: view.frame.width/20, y: view.frame.height*9/40, width: view.frame.width*18/20, height: 30, font: 15, color: .cyan)
         self.createImageView(x: view.frame.width/20, y: view.frame.height*11/40, width: view.frame.width*18/20, height: view.frame.height*3/10)
         self.createButton(button: addImageButton, name: "square.and.arrow.up", x: view.frame.width*3/20, y: view.frame.height*37/40, width: 30, height: 30, selector: #selector(self.uploadImage(_ :)))
-        self.createButton(button: openMapButton, name: "map", x: view.frame.width*10/20, y: view.frame.height*37/40, width: 30, height: 30, selector: #selector(self.activateMap(_ :)))
-        self.createButton(button: deleteDBButton, name: "delete.left", x: view.frame.width*17/20, y: view.frame.height*37/40, width: 30, height: 30, selector: #selector(self.deleteShop(_ :)))
+        self.createButton(button: openMapButton, name: "map", x: view.frame.width*19/40, y: view.frame.height*37/40, width: 30, height: 30, selector: #selector(self.activateMap(_ :)))
+        self.createButton(button: deleteDBButton, name: "delete.left", x: view.frame.width*31/40, y: view.frame.height*37/40, width: 30, height: 30, selector: #selector(self.deleteShop(_ :)))
         
         // Tap recognizer
         shopWebSiteLabel.isUserInteractionEnabled = true
         shopWebSiteLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.seeWebSite(_:))))
     }
     
-    func sendCompletion() {
-        return
-    }
 
     // MARK:- UI Generator
     
@@ -117,23 +114,33 @@ class DetailShopViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @objc func uploadImage(_ sender: UIButton) {
-        return
+        let alert = alertModel.addImageAlert(title: "Image Selection", message: "Please Select Image Picker Type.", VC: self)
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc func activateMap(_ sender: UIButton) {
-        return
+        var urlString = String()
+        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+            urlString = "comgooglemaps://?daddr=\(shopData.latitude),\(shopData.longitude)&directionsmode=walking&zoom=14"
+        } else {
+//            urlString = "http://maps.apple.com/?daddr=\(shopData.latitude),\(shopData.longitude)&dirflg=w"
+            urlString = "http://maps.apple.com/?ll=\(shopData.latitude!),\(shopData.longitude!)"
+        }
+        
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
     }
     
     @objc func deleteShop(_ sender: UIButton) {
         return
     }
     
-    
-    // MARK:- 画像追加
-//    @IBAction func uploadImage(_ sender: Any) {
-//        let alert = alertModel.addImageAlert(title: "Image Selection", message: "Please Select Image Picker Type.", VC: self)
-//        self.present(alert, animated: true, completion: nil)
-//    }
+}
+
+// MARK:- Extension
+
+extension DetailShopViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AlertDelegate {
     
     func addFavoriteToDB(category: String) {return}
     
@@ -166,21 +173,23 @@ class DetailShopViewController: UIViewController, UIImagePickerControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if info[.originalImage] as? UIImage != nil{
-//            shopImageView.image = info[.originalImage] as! UIImage
-//            picker.dismiss(animated: true, completion: nil)
-//            
-//            // DBへ追加する
-//            let passedImage: UIImage? = shopImageView.image
-//            if let passedData = passedImage?.jpegData(compressionQuality: 0.1) {
-//                self.sendDBModel.addImageToDB(shopData: shopData, shopImageData: passedData)
-//            }
-            
+            imageView.image = info[.originalImage] as! UIImage
+            picker.dismiss(animated: true, completion: nil)
+
+            // Add DB
+            let passedImage: UIImage? = imageView.image
+            if let passedData = passedImage?.jpegData(compressionQuality: 0.1) {
+                self.sendDBModel.addImageToDB(shopData: shopData, shopImageData: passedData)
+            }
         }
+    }
+    
+    func sendCompletion() {
+        let alert = alertModel.noResultsAlert(title: "Complete", message: "Add your Favorite List!")
+        self.present(alert, animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
 }
-
