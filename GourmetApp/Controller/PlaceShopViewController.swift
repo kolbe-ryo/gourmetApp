@@ -86,7 +86,7 @@ extension PlaceShopViewController: UICollectionViewDataSource {
         var shopCount = Int()
         for shopData in loadDBModel.shopDataSets {
             if shopData.shopCategory != category {continue}
-            if shopData.foodCategory == text {shopCount += 1}
+            if shopData.prefecture   == text {shopCount += 1}
         }
         
         // Set text
@@ -114,8 +114,8 @@ extension PlaceShopViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let allVC = storyboard?.instantiateViewController(withIdentifier: "allVC") as! AllShopViewController
         allVC.category       = category
-        allVC.selectiveClass = "Category"
-        allVC.foodCategory   = placeModel.dataSource[indexPath.row]
+        allVC.selectiveClass = "Place"
+        allVC.shopPlace      = placeModel.dataSource[indexPath.row]
         self.navigationController?.pushViewController(allVC, animated: true)
     }
 }

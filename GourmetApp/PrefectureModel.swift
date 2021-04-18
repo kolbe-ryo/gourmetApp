@@ -8,6 +8,8 @@
 import Foundation
 
 struct PrefectureDataSource {
+    #error("画像と都道府県の追加")
+    
     let dataSource =  [
         "Hokkaido",
         "Aomori",
