@@ -42,7 +42,7 @@
 <img width="472" alt="Screen Shot 2021-04-18 at 22 26 26" src="https://user-images.githubusercontent.com/77920313/115147250-1f432f00-a095-11eb-9a9b-9a2ad41d28c9.png">　<img width="472" alt="Screen Shot 2021-04-18 at 22 27 02" src="https://user-images.githubusercontent.com/77920313/115147275-34b85900-a095-11eb-83ee-651eb4b46d8a.png">
 
 ### Mapリンク
-<img width="472" alt="Screen Shot 2021-04-18 at 22 24 48" src="https://user-images.githubusercontent.com/77920313/115147218-e5722880-a094-11eb-9e8f-b9b9a7e4c31a.png">
+<img width="481" alt="Screen Shot 2021-04-19 at 19 47 29" src="https://user-images.githubusercontent.com/77920313/115224644-1495a200-a148-11eb-8c6c-76accdeb77b0.png">
 
 
 ## 使用技術
