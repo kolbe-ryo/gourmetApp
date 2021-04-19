@@ -126,7 +126,12 @@ class DetailShopViewController: UIViewController, SendCompletionDelegate {
     }
     
     @objc func deleteShop(_ sender: UIButton) {
-        sendDBModel.deleteFromDB(documentID: shopData.documentID!)
+        let alert = alertModel.checkDelete(title: "Delete", message: "Are you OK to delete this item?", VC: self)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteCompletion() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -135,11 +140,18 @@ class DetailShopViewController: UIViewController, SendCompletionDelegate {
 
 extension DetailShopViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AlertDelegate {
     
-    func addFavoriteToDB(category: String) {return}
-    
-    func addImagepickerDelegate(imageType: String) {
-        if imageType == "Camera" {self.cameraPicker()}
-        if imageType == "Album" {self.albumPicker()}
+    func alertDelegate(str: String) {
+        if str == "Camera" {
+            self.cameraPicker()
+            return
+        }
+        if str == "Album" {
+            self.albumPicker()
+            return
+        }
+        if str == "" {
+            sendDBModel.deleteFromDB(documentID: shopData.documentID!)
+        }
     }
 
     func cameraPicker(){

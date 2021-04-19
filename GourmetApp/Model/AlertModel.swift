@@ -4,8 +4,7 @@ import Foundation
 import FloatingPanel
 
 protocol AlertDelegate {
-    func addFavoriteToDB(category: String)
-    func addImagepickerDelegate(imageType: String)
+    func alertDelegate(str: String)
 }
 
 class AlertModel: FloatingPanelControllerDelegate {
@@ -23,12 +22,12 @@ class AlertModel: FloatingPanelControllerDelegate {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         // Wantリストへ保存
         alert.addAction(UIAlertAction(title: "Want", style: .default, handler: { (alert) in
-            self.alertDelegate?.addFavoriteToDB(category: alert.title!)
+            self.alertDelegate?.alertDelegate(str: alert.title!)
         }))
         
         // Wentリストへ保存
         alert.addAction(UIAlertAction(title: "Good", style: .default, handler: { (alert) in
-            self.alertDelegate?.addFavoriteToDB(category: alert.title!)
+            self.alertDelegate?.alertDelegate(str: alert.title!)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -37,19 +36,28 @@ class AlertModel: FloatingPanelControllerDelegate {
     }
 
     
-    func addImageAlert(title: String, message: String, VC: UIViewController) -> UIAlertController{
+    func addImageAlert(title: String, message: String, VC: UIViewController) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (alert) in
-            self.alertDelegate?.addImagepickerDelegate(imageType: "Camera")
+            self.alertDelegate?.alertDelegate(str: "Camera")
         }))
         
         alert.addAction(UIAlertAction(title: "Album", style: .default, handler: { (alert) in
-            self.alertDelegate?.addImagepickerDelegate(imageType: "Album")
+            self.alertDelegate?.alertDelegate(str: "Album")
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
+        return alert
+    }
+    
+    func checkDelete(title: String, message: String, VC: UIViewController) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+            self.alertDelegate?.alertDelegate(str: "")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         return alert
     }
     

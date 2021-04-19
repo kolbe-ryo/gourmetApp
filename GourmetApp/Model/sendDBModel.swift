@@ -6,6 +6,7 @@ import FirebaseFirestore
 
 protocol SendCompletionDelegate {
     func sendCompletion()
+    func deleteCompletion()
 }
 
 class SendDBModel {
@@ -80,7 +81,10 @@ class SendDBModel {
     }
     
     func deleteFromDB(documentID: String) {
-//        #error("削除処理")
+        db.collection(Auth.auth().currentUser!.uid).document(documentID).delete { (error) in
+            if error != nil {return}
+            self.sendCompletionDelegate?.deleteCompletion()
+        }
     }
     
 }

@@ -162,10 +162,21 @@ extension SemiModalViewController: UIPickerViewDelegate, UIPickerViewDataSource 
 
 
 extension SemiModalViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AlertDelegate {
+    
+    
     // Select category(category:Went or Want)
-    func addFavoriteToDB(category: String) {
+    func alertDelegate(str: String) {
+        if str == "Camera" {
+            self.cameraPicker()
+            return
+        }
+        if str == "Album"  {
+            self.albumPicker()
+            return
+        }
+        
         // Add needed infromation for ShopData
-        shopData.shopCategory = category
+        shopData.shopCategory = str
         shopData.foodCategory = categoryLabel.text
         
         // Send shopData to DB
@@ -178,11 +189,6 @@ extension SemiModalViewController: UIImagePickerControllerDelegate, UINavigation
         let alert = alertModel.noResultsAlert(title: "Complete", message: "Add your Favorite List!")
         self.present(alert, animated: true, completion: nil)
         floatingPanelController.move(to: .half, animated: true)
-    }
-    
-    func addImagepickerDelegate(imageType: String) {
-        if imageType == "Camera" {self.cameraPicker()}
-        if imageType == "Album"  {self.albumPicker()}
     }
     
     func cameraPicker(){
