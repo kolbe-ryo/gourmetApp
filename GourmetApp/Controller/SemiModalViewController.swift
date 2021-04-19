@@ -41,7 +41,7 @@ class SemiModalViewController: UIViewController, FloatingPanelControllerDelegate
         alertModel.alertDelegate         = self
         
         // UI Setting
-        self.createLabel(label: shopNameLabel, title: shopData.name!, x: view.frame.width*1/20, y: view.frame.height*1/20, width: view.frame.width*9/10, height: 25, font: 30, color: .white)
+        self.createLabel(label: shopNameLabel, title: shopData.name!, x: view.frame.width*1/20, y: view.frame.height*1/20, width: view.frame.width*9/10, height: 30, font: 30, color: .white)
         self.createLabel(label: shopPlaceLabel, title: shopData.address!, x: view.frame.width*1/20, y: view.frame.height*2/20, width: view.frame.width*9/10, height: 20, font: 15, color: .white)
         self.createLabel(label: shopWebSiteLabel, title: shopData.url!, x: view.frame.width*1/20, y: view.frame.height*3/20, width: view.frame.width*9/10, height: 20, font: 15, color: .cyan)
         self.createLabel(label: categoryTitle, title: "Category:", x: view.frame.width*1/20, y: view.frame.height*4/20, width: view.frame.width*3/10, height: 20, font: 15, color: .white)

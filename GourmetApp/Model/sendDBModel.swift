@@ -56,6 +56,13 @@ class SendDBModel {
     }
     
     func addImageToDB(shopData: ShopData, shopImageData: Data) {
+        // Delete
+        let imageRefForDelete = Storage.storage().reference(forURL: shopData.shopImageURL!)
+        imageRefForDelete.delete(completion: { (error) in
+            if error != nil {return}
+        })
+        
+        // Add
         let imageRef = Storage.storage().reference().child("Images").child("\(UUID().uuidString + String(Date().timeIntervalSince1970)).jpg")
         imageRef.putData(shopImageData, metadata: nil) { (metaData, error) in
             if error != nil {return}
@@ -72,7 +79,7 @@ class SendDBModel {
         }
     }
     
-    func deleteFromDB() {
+    func deleteFromDB(documentID: String) {
 //        #error("削除処理")
     }
     

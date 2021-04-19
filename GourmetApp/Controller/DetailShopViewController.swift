@@ -121,12 +121,12 @@ class DetailShopViewController: UIViewController, SendCompletionDelegate {
     @objc func activateMap(_ sender: UIButton) {
         var urlString = String()
         urlString     = shopData.name!.replacingOccurrences(of: " ", with: "+")
-        urlString     = "http://maps.apple.com/?q=\(urlString)&sll=\(shopData.latitude),\(shopData.longitude)"
+        urlString     = "http://maps.apple.com/?q=\(urlString)&sll=\(shopData.latitude!),\(shopData.longitude!)"
         if let url    = URL(string: urlString) {UIApplication.shared.open(url)}
     }
     
     @objc func deleteShop(_ sender: UIButton) {
-        return
+        sendDBModel.deleteFromDB(documentID: shopData.documentID!)
     }
     
 }

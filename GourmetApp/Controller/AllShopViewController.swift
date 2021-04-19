@@ -30,6 +30,8 @@ class AllShopViewController: UIViewController, LoadCompletionDelegate {
     // MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadDBModel.loadCompletionDelegate = self
+        loadDBModel.loadContents(category: category)
         
         // UI Setting
         self.navigationItem.title      = category
@@ -41,8 +43,7 @@ class AllShopViewController: UIViewController, LoadCompletionDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadDBModel.loadCompletionDelegate = self
-        loadDBModel.loadContents(category: category)
+
     }
     
     func loadCompletion() {collectionView.reloadData()}
@@ -76,8 +77,8 @@ extension AllShopViewController: UICollectionViewDataSource {
         for subview in cell.contentView.subviews{subview.removeFromSuperview()}
 
         let nameLabel     = self.setLabel(text: shopData[indexPath.row].name!, x: cell.bounds.width*1/10, y: 0, width: cell.frame.width*9/10, height: cell.frame.height*8/10, lines: 3, align: .left, fontSize: 30, color: .white)
-        let placeLabel    = self.setLabel(text: shopData[indexPath.row].prefecture!, x: cell.bounds.width*1/10, y: cell.bounds.height*8/10, width: cell.frame.width*9/10, height: cell.frame.height/10, lines: 0, align: .left, fontSize: 15, color: .gray)
-        let categoryLabel = self.setLabel(text: shopData[indexPath.row].foodCategory!, x: cell.bounds.width*1/10, y: cell.bounds.height*9/10, width: cell.frame.width*9/10, height: cell.frame.height/10, lines: 0, align: .left, fontSize: 15, color: .gray)
+        let placeLabel    = self.setLabel(text: shopData[indexPath.row].prefecture!, x: cell.bounds.width*1/10, y: cell.bounds.height*8/10, width: cell.frame.width*9/10, height: cell.frame.height/10, lines: 0, align: .left, fontSize: 15, color: .black)
+        let categoryLabel = self.setLabel(text: shopData[indexPath.row].foodCategory!, x: cell.bounds.width*1/10, y: cell.bounds.height*9/10, width: cell.frame.width*9/10, height: cell.frame.height/10, lines: 0, align: .left, fontSize: 15, color: .black)
         
         cell.contentView.addSubview(nameLabel)
         cell.contentView.addSubview(placeLabel)
