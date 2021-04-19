@@ -26,8 +26,6 @@ class PlaceShopViewController: UIViewController, LoadCompletionDelegate {
     // MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDBModel.loadCompletionDelegate = self
-        loadDBModel.loadContents(category: category)
         
         // UI Setting
         self.navigationItem.title      = category
@@ -35,6 +33,12 @@ class PlaceShopViewController: UIViewController, LoadCompletionDelegate {
         collectionView.delegate        = self
         collectionView.dataSource      = self
         view.addSubview(collectionView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadDBModel.loadCompletionDelegate = self
+        loadDBModel.loadContents(category: category)
     }
     
     func loadCompletion() {collectionView.reloadData()}

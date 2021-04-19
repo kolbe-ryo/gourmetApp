@@ -120,12 +120,9 @@ class DetailShopViewController: UIViewController, SendCompletionDelegate {
 
     @objc func activateMap(_ sender: UIButton) {
         var urlString = String()
-        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-            urlString = "comgooglemaps://?daddr=\(shopData.latitude),\(shopData.longitude)&directionsmode=walking&zoom=14"
-        } else {
-            urlString = "http://maps.apple.com/?ll=\(shopData.latitude!),\(shopData.longitude!)"
-        }
-        if let url = URL(string: urlString) {UIApplication.shared.open(url)}
+        urlString     = shopData.name!.replacingOccurrences(of: " ", with: "+")
+        urlString     = "http://maps.apple.com/?q=\(urlString)&sll=\(shopData.latitude),\(shopData.longitude)"
+        if let url    = URL(string: urlString) {UIApplication.shared.open(url)}
     }
     
     @objc func deleteShop(_ sender: UIButton) {

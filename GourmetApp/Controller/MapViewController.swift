@@ -180,6 +180,7 @@ extension MapViewController: CLLocationManagerDelegate {
         region.span.longitudeDelta     = 0.01
         mapView.setRegion(region, animated:true)
     }
+    
 }
 
 
